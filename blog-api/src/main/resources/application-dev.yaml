@@ -1,0 +1,21 @@
+# application-dev.yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blog_dev
+    username: ${DEV_USER_DB}
+    password: ${DEV_PASSWORD_DB}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+  config:
+    import: optional:file:.env[.properties]
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+

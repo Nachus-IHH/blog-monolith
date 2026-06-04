@@ -1,0 +1,8 @@
+# application.yaml
+spring:
+  application:
+    name: blog-api
+
+  profiles:
+    active: dev
+

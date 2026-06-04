@@ -1,0 +1,15 @@
+# application-qa.yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://qa-db:5432/blog_qa
+    username: ${QA_USER_DB}       # esto se lee del S.O.
+    password: ${QA_PASSWORD_DB}   # esto se lee del S.O.
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    root: INFO
+
