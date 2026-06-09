@@ -1,11 +1,11 @@
 package com.post.dto.response;
 
-import java.util.Date;
+import java.time.Instant;
 
 public record PostDetailDto(
         Long idPost,
         String title,
         String content,
-        Date fecha_creacion,
+        Instant fecha_creacion,
         Long idUser) {
 }
