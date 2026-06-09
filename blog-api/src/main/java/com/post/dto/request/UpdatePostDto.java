@@ -1,4 +1,4 @@
-package com.post.dto;
+package com.post.dto.request;
 
 public record UpdatePostDto(
         String title,

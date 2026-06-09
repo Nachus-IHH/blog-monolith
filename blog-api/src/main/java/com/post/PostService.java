@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.post.domain.Post;
-import com.post.dto.CreatePostDto;
-import com.post.dto.UpdatePostDto;
+import com.post.dto.request.CreatePostDto;
+import com.post.dto.request.UpdatePostDto;
 import com.post.dto.response.PostDetailDto;
 import com.user.UsuarioRepository;
 import com.user.domain.Usuario;
