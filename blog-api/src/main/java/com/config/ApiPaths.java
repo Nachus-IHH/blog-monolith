@@ -11,8 +11,8 @@ public class ApiPaths {
     /* MODULES */
     public static final String USER_PATH = API_VERSION + "/user";
 
-    public static final String BLOG_PATH = API_VERSION + "/blog";
+    public static final String BLOG_PATH = API_VERSION + "/post";
 
-    public static final String COMMENTS_PATH = API_VERSION + "/comments";
+    public static final String COMMENTS_PATH = API_VERSION + "/comment";
 
 }
