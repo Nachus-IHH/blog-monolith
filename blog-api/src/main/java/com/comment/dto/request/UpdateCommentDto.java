@@ -1,4 +1,4 @@
-package com.comment.dto;
+package com.comment.dto.request;
 
 public record UpdateCommentDto(
         String content) {
