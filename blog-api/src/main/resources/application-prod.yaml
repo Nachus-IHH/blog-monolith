@@ -1,0 +1,15 @@
+# application-prod.yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://prod-db:5432/blog_prod
+    username: ${PROD_USER_DB}       # esto se lee del S.O.
+    password: ${PROD_PASSWORD_DB}   # esto se lee del S.O.
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+logging:
+  level:
+    root: WARN
+
