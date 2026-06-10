@@ -34,4 +34,3 @@ build/
 
 ### Entornos y Secretos ###
 .env
-src/main/resources/application-prod.yaml
