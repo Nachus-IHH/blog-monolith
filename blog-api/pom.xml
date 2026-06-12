@@ -66,8 +66,19 @@
 			<groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency>
+        </dependency>
 
+        <!-- Flyway -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
+        </dependency>
+
+        <!-- Flyway con dialecto PostgreSQL -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-database-postgresql</artifactId>
+        </dependency>
 
 	</dependencies>
 

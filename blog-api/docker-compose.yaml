@@ -35,7 +35,7 @@ services:
         condition: service_healthy
 
     environment:
-      DB_URL: jdbc:postgresql://database:5432/blog
+      DB_URL: ${DB_URL}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
