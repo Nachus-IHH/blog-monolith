@@ -31,15 +31,16 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "title")
     private String titulo;
 
     private String content;
 
-    @Column(name = "fecha_creacion", nullable = false, updatable = false)
+    @Column(name = "creation_date", nullable = false, updatable = false)
     private Instant fechaCreacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_who_post", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private Usuario userWhoPost;
 
     @PrePersist

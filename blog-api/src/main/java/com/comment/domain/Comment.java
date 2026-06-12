@@ -34,7 +34,7 @@ public class Comment {
 
     private String content;
 
-    @Column(name = "fecha_creacion", nullable = false, updatable = false)
+    @Column(name = "creation_date", nullable = false, updatable = false)
     private Instant fechaCreacion;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,7 +42,7 @@ public class Comment {
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private Usuario usuario;
 
     @PrePersist
