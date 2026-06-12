@@ -1,17 +1,45 @@
 # docker-compose.yaml
 
 services:
+  # Database (PostgreSQL)
   database:
     image: postgres:16-alpine
-    container_name: blog-postgre-dev
     environment:
-      - POSTGRES_USER=${DEV_USER_DB}
-      - POSTGRES_PASSWORD=${DEV_PASSWORD_DB}
-      - POSTGRES_DB=blog_dev
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: blog
+
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+    networks:
+      - blog-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d blog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  # Backend (Spring Boot)
+  backend-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    ports:
+      - "8080:8080"
+    depends_on:
+      database:
+        condition: service_healthy
+
+    environment:
+      DB_URL: jdbc:postgresql://database:5432/blog
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+
     networks:
       - blog-network
 
@@ -20,4 +48,3 @@ volumes:
 
 networks:
   blog-network:
-
