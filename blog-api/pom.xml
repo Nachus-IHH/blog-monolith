@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+        <argLine></argLine>
 	</properties>
 	<dependencies>
         <!-- Web Starter -->
@@ -80,6 +81,26 @@
             <artifactId>flyway-database-postgresql</artifactId>
         </dependency>
 
+        <!-- H2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Test Webmvc -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JSR310 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -93,6 +114,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -109,6 +131,26 @@
                     </excludes>
 				</configuration>
 			</plugin>
+            <!-- Localiza ruta fisica del JAR de Mockito -->
+            <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-dependency-plugin</artifactId>
+                 <executions>
+                     <execution>
+                         <goals>
+                             <goal>properties</goal>
+                         </goals>
+                     </execution>
+                 </executions>
+             </plugin>
+             <!-- Surefire configured with the agent loaded into memory -->
+             <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-surefire-plugin</artifactId>
+                 <configuration>
+                     <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar}</argLine>
+                 </configuration>
+         </plugin>
 		</plugins>
 	</build>
 
