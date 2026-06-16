@@ -1,5 +1,6 @@
 package com.user;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,6 +12,7 @@ import com.user.domain.Role;
 import com.user.domain.Usuario;
 import com.user.dto.RequestUsuarioDto;
 import com.user.dto.ResponseUsuarioDto;
+import com.user.exception.EmailAlreadyExistsException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,11 +49,15 @@ public class UsuarioService {
      * @return ResponseUsuarioDto Regresa datos del usuario registrado
      */
     @Transactional
-    public ResponseUsuarioDto crearUsuario(RequestUsuarioDto request) {
+    public URI crearUsuario(RequestUsuarioDto request) {
         log.info("Proceso de creacion del usuario: {}", request.username());
 
-        /* Verificar correo electronico - método / proceso */
+        /* Verificar correo electronico */
         log.debug("Verificando correo electronico del solicitante: {}", request.email());
+        if (usuarioRepository.existsByEmail(request.email())) {
+            log.error("El email {} ya existe", request.email());
+            throw new EmailAlreadyExistsException("Este email ya esta en uso");
+        }
 
         String passwordEncriptada = passwordEncoder.encode(request.password());
         log.debug("Contraseña encriptada correctamente con BCrypt");
